@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""HNNs C Elegans Embryogenesis
+
+Contributer: Lalith Bharadwaj Baru
+"""
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
