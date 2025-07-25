@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+"""HNNs C Elegans Embryogenesis
+
+Contributer: Lalith Bharadwaj Baru
+"""
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
