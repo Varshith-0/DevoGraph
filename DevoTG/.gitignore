@@ -142,33 +142,34 @@ runs/
 tb_logs/
 
 # Data files
-*.csv
+# *.csv
 *.json
 *.pkl
 *.pickle
 *.h5
 *.hdf5
 # data/raw/
-data/processed/
-!data/sample/
+data/processed_datasets/
+# !data/sample/
 
 # Output files
-outputs/
-results/
-visualizations/
-plots/
-animations/
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.mp4
-*.avi
-*.html
+# outputs/
+outputs/connectome_analysis/visualizations/neural_development_animation.html
+# results/
+# visualizations/
+# plots/
+# animations/
+# *.png
+# *.jpg
+# *.jpeg
+# *.gif
+# *.mp4
+# *.avi
+# *.html
 !notebooks/*.html
 
 # Model files
-models/
+# models/
 checkpoints/
 *.model
 *.weights
@@ -219,5 +220,5 @@ sample_data/
 # FFmpeg temporary files
 *.ffmpeg_*
 
-# setup.py development mode
+#setup file
 setup.py
