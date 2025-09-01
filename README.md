@@ -29,14 +29,13 @@
 * developed a customized RNN for creating graph embeddings, building out Topological Data Analysis tools and infrastructure.
   
 ### Mehul Arora
-* developed a Hypergraph model of the embryo.
+* developed a Hypergraph model (HNN) of the embryo.
+  
+### Lalith Baru
+* extended the Hypergraph model (HNN) to include Neural Developmental Programs (NDP).
 
 ### Pakhi Banchalia
 * developed applications of k-mapper for Topological Data Analysis and Neural Developmental Programs.
 
-### Lalith Baru
-* continued work on a Hypergraph model of the embryp.
-
-### Jayadratha Gayen
-* developed a temporal graph neural network (T-GNN) approach.
-
+### Jayadrath Gayen
+* developed the DevoTG (temporal graphs) approach to D-GNNs.
