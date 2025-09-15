@@ -62,14 +62,11 @@ DevoTG/
 │   │   ├── __init__.py
 │   │   ├── dataset_loader.py         # Cell division dataset loading
 │   │   ├── connectome_loader.py      # Connectome dataset processing
-│   │   ├── temporal_graph_builder.py # CTDG/DTDG construction
-│   │   └── preprocessing.py          # Data preprocessing utilities
+│   │   └── temporal_graph_builder.py # CTDG/DTDG construction
 │   │
 │   ├── models/                       # Neural network models
 │   │   ├── __init__.py
-│   │   ├── tgn_model.py             # TGN implementation
-│   │   ├── attention.py             # Attention mechanisms
-│   │   └── link_predictor.py        # Link prediction model
+│   │   └── tgn_model.py             # TGN implementation for link prediction
 │   │
 │   ├── visualization/                # Visualization components
 │   │   ├── __init__.py
@@ -81,15 +78,11 @@ DevoTG/
 │   ├── analysis/                     # Analysis utilities
 │   │   ├── __init__.py
 │   │   ├── statistics.py            # Statistical analysis
-│   │   ├── network_analysis.py      # Network topology analysis
-│   │   ├── patterns.py              # Pattern detection
-│   │   └── metrics.py               # Evaluation metrics
+│   │   └── network_analysis.py      # Network topology analysis
 │   │
 │   └── utils/                        # Utility functions
 │       ├── __init__.py
-│       ├── thresholds.py            # Threshold calculations
-│       ├── io_utils.py              # Input/output utilities
-│       └── constants.py             # Project constants
+│       └── thresholds.py            # Threshold calculations
 │
 ├── notebooks/                        # Jupyter notebooks
 │   ├── 01_cell_lineage_data_analysis.ipynb       # Dataset understanding
@@ -376,7 +369,7 @@ If you use DevoTG in your research, please cite:
 @software{devotg2025,
   publisher={GitHub},
   title={DevoTG: Developmental Temporal Graph Networks},
-  author={Jayadratha Gayen},
+  author={Jayadratha Gayen, Mehul Arora, and Bradly Alicea},
   year={2025},
   url={https://github.com/DevoLearn/DevoGraph/tree/main/DevoTG}
 }
@@ -392,7 +385,10 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENCE.md)
 
 ## 🙏 Acknowledgments
 
-- C. elegans developmental biology community
+- My GSoC 2025 mentors Mehul Arora, Bradly Alicea, Sarrah Bastawala and Jesse Parent for their guidance and support
+- The DevoLearn organization for hosting this project
+- The Google Open Source Programs team for supporting this project
+- The C. elegans developmental biology community 
 - Witvliet et al. for providing the connectome datasets
 - PyTorch Geometric team for temporal graph tools
 - Plotly team for interactive visualization capabilities
