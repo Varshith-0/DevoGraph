@@ -9,7 +9,8 @@ from torch_geometric.nn import HypergraphConv
 
 class HyperSAGEConv(nn.Module):
     """
-    HyperSAGE: node -> hyperedge -> node aggregation (Arya et al., 2020).
+    HyperSAGE: node -> hyperedge -> node aggregation.
+    Paper: https://arxiv.org/abs/2010.04558
     """
     def __init__(self, in_dim, out_dim, aggr_node='mean', aggr_edge='mean',
                  dropout=0.0, bias=True):
@@ -48,7 +49,7 @@ class HyperSAGEConv(nn.Module):
         row = row.to(torch.long).contiguous()
         col = col.to(torch.long).contiguous()
 
-        x_proj = self.lin_v(x)                                  
+        x_proj = self.lin_v(x)  # (N, D)                         
         N = x_proj.size(0)                                      
 
         if edge_index.numel() == 0:
@@ -61,12 +62,12 @@ class HyperSAGEConv(nn.Module):
         col = col - col_min
         M = int(col.max().item()) + 1
 
-        e_feat = self._reduce(x_proj[row], col, M, self.aggr_node)      
+        e_feat = self._reduce(x_proj[row], col, M, self.aggr_node)  # (M, D)
 
-        e_proj = self.lin_e(e_feat)                                     
-        n_agg  = self._reduce(e_proj[col], row, N, self.aggr_edge)      
+        e_proj = self.lin_e(e_feat) # (M, D)                                     
+        n_agg  = self._reduce(e_proj[col], row, N, self.aggr_edge)  # (N, D)      
 
-        out = torch.cat([x_proj, n_agg], dim=-1)                        
+        out = torch.cat([x_proj, n_agg], dim=-1)    # (N, 2D)                        
         out = torch.relu(self.lin_update(out))
         return self.dropout(out)
 
@@ -74,6 +75,7 @@ class UniSAGEConv(nn.Module):
     """
     UniGNN-SAGE: vertex→hyperedge→vertex with SAGE-style pooling (mean/max).
     edge_index: (2,E) incidence [node_id, hyperedge_id], 0-based per snapshot.
+    ArXiv: https://arxiv.org/abs/2105.00956
     """
     def __init__(self, in_dim, out_dim, aggr_node='mean', aggr_edge='mean',
                  dropout=0.0, bias=True):
@@ -107,7 +109,7 @@ class UniSAGEConv(nn.Module):
         col = col.to(torch.long).contiguous()
         N = x.size(0)
 
-        x_self = self.lin_v(x)
+        x_self = self.lin_v(x)  # (N, D)
 
         if edge_index.numel() == 0:
             n_agg = x_self.new_zeros((N, x_self.size(-1)))
@@ -117,12 +119,12 @@ class UniSAGEConv(nn.Module):
         col = col - int(col.min().item())
         M = int(col.max().item()) + 1
 
-        e_feat = self._reduce(x_self[row], col, M, self.aggr_node)  
+        e_feat = self._reduce(x_self[row], col, M, self.aggr_node)  # (M, D)  
 
-        e_proj = self.lin_e(e_feat)                                 
-        n_agg  = self._reduce(e_proj[col], row, N, self.aggr_edge)  
+        e_proj = self.lin_e(e_feat) # (M, D)                                 
+        n_agg  = self._reduce(e_proj[col], row, N, self.aggr_edge)  # (N, D)  
 
-        out = torch.cat([x_self, n_agg], dim=-1)                   
+        out = torch.cat([x_self, n_agg], dim=-1)    # (N, 2D)                   
         return self.drop(torch.relu(self.lin_upd(out)))
 
 class DynHNN(nn.Module):
